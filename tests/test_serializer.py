@@ -1,7 +1,7 @@
 import pytest
 
-from packets import PacketType
-from serializer import PacketSerializer
+from aioaprs.packets import PacketType
+from aioaprs.serializer import PacketSerializer
 
 
 def test_serializer_none():

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aioaprs"
-version = "0.2.1"
+version = "0.3.0"
 description = "Async Python3 libraray implementing an APRS-IS client"
 readme = "README.md"
 authors = [
@@ -32,8 +32,3 @@ dev = ["pip-tools", "pytest"]
 
 [project.urls]
 Homepage = "https://github.com/sardylan/aioaprs"
-
-[tool.poetry]
-packages = [
-    { include = "aioaprs" }
-]

@@ -1,6 +1,6 @@
 import pytest
 
-from parser import PacketParser
+from aioaprs.parser import PacketParser
 
 
 def test_parser_none():

@@ -1,7 +1,7 @@
-from default import *
+from aioaprs.default import *
 
 
-class AioAPRSConfig:
+class AioAPRSClientConfig:
     _host: str
     _port: int
     _callsign: str

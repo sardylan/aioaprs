@@ -3,25 +3,25 @@ import logging
 from asyncio import StreamReader, StreamWriter, IncompleteReadError, Task, CancelledError
 from typing import Optional, Coroutine, Callable
 
-from config import AioAPRSConfig
+from aioaprs.config import AioAPRSClientConfig
 
 __VERSION__: str = "0.2.1"
 
 _logger = logging.getLogger(__name__)
 
 
-class AioAPRS(object):
+class AioAPRSClient(object):
     _lock: asyncio.Lock
     _keep_running: bool
     _task_rx: Optional[Task]
 
-    _config: AioAPRSConfig
+    _config: AioAPRSClientConfig
     _callback: Optional[Callable[[str], Coroutine]]
 
     _sock_reader: Optional[StreamReader]
     _sock_writer: Optional[StreamWriter]
 
-    def __init__(self, config: AioAPRSConfig, callback: Optional[Callable[[str], Coroutine]] = None) -> None:
+    def __init__(self, config: AioAPRSClientConfig, callback: Optional[Callable[[str], Coroutine]] = None) -> None:
         super().__init__()
 
         self._lock = asyncio.Lock()

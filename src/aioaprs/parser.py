@@ -1,9 +1,9 @@
 import logging
 from typing import List
 
-from packets import PacketType, DATA_TYPE_IDENTIFIER
-from parsers.message import parse_body_message
-from parsers.telemetry import parse_body_telemetry
+from aioaprs.packets import DATA_TYPE_IDENTIFIER, PacketType
+from aioaprs.parsers.message import parse_body_message
+from aioaprs.parsers.telemetry import parse_body_telemetry
 
 _logger = logging.getLogger(__name__)
 

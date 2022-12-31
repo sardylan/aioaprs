@@ -1,4 +1,4 @@
-from serializers.telemetry import serialize_body_telemetry
+from aioaprs.serializers.telemetry import serialize_body_telemetry
 
 
 def test_telemetry_no_values():

@@ -1,6 +1,6 @@
 import pytest
 
-from parsers.telemetry import parse_body_telemetry
+from aioaprs.parsers.telemetry import parse_body_telemetry
 
 
 def test_telemetry_no_seq():

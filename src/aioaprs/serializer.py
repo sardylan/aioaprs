@@ -1,5 +1,5 @@
-from packets import PacketType
-from serializers.telemetry import serialize_body_telemetry
+from aioaprs.packets import PacketType
+from aioaprs.serializers.telemetry import serialize_body_telemetry
 
 
 class PacketSerializer:

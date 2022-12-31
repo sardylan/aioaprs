@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from packets import PacketType, PACKET_TYPE_IDENTIFIER
+from aioaprs.packets import PacketType, PACKET_TYPE_IDENTIFIER
 
 _logger = logging.getLogger(__name__)
 

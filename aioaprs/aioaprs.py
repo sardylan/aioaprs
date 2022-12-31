@@ -5,7 +5,7 @@ from typing import Optional, Coroutine, Callable
 
 from config import AioAPRSConfig
 
-__VERSION__: str = "0.2.0"
+__VERSION__: str = "0.2.1"
 
 _logger = logging.getLogger(__name__)
 

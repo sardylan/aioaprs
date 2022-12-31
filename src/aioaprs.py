@@ -1,11 +1,11 @@
 import asyncio
 import logging
 from asyncio import StreamReader, StreamWriter, IncompleteReadError, Task, CancelledError
-from typing import Optional, Awaitable, Callable
+from typing import Optional, Coroutine, Callable
 
 from config import AioAPRSConfig
 
-__VERSION__: str = "0.1.0"
+__VERSION__: str = "0.2.0"
 
 _logger = logging.getLogger(__name__)
 
@@ -16,12 +16,12 @@ class AioAPRS(object):
     _task_rx: Optional[Task]
 
     _config: AioAPRSConfig
-    _callback: Optional[Callable[[str], Awaitable[None]]]
+    _callback: Optional[Callable[[str], Coroutine]]
 
     _sock_reader: Optional[StreamReader]
     _sock_writer: Optional[StreamWriter]
 
-    def __init__(self, config: AioAPRSConfig, callback: Optional[Callable[[str], Awaitable[None]]] = None) -> None:
+    def __init__(self, config: AioAPRSConfig, callback: Optional[Callable[[str], Coroutine]] = None) -> None:
         super().__init__()
 
         self._lock = asyncio.Lock()
@@ -103,7 +103,7 @@ class AioAPRS(object):
             _logger.debug(f"[ <<< RX     ] {line}")
 
             if self._callback is not None:
-                await self._callback(line)
+                asyncio.create_task(self._callback(line))
 
     @staticmethod
     def passcode(callsign: str) -> str:

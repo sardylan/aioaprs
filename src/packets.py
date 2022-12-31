@@ -128,3 +128,32 @@ DATA_TYPE_IDENTIFIER: dict = {
     "}": PacketType.THIRD_PARTY,
     "~": PacketType.DO_NOT_USE_TNC
 }
+
+PACKET_TYPE_IDENTIFIER: dict = {
+    PacketType.POSITION_WITHOUT_TIMESTAMP: "!",
+    PacketType.RAW_GPS_DATA: "$",
+    PacketType.MICROFINDER: "%",
+    PacketType.RESERVER_MAP_FEATURE: "&",
+    PacketType.MIC_E_DATA_OLD: "'",
+    PacketType.ITEM: ")",
+    PacketType.PEET_BROS_U_II_WEATHER_STATION: "*",
+    PacketType.RESERVER_SHELTER_DATA_WITH_TIME: "+",
+    PacketType.INVALID_OR_TEST: ",",
+    PacketType.RESERVER_SPACE_WEATHER: ".",
+    PacketType.POSITION_WITH_TIMESTAMP: "/",
+    PacketType.MESSAGE: ":",
+    PacketType.OBJECT: ";",
+    PacketType.STATION_CAPABILITIES: "<",
+    PacketType.POSITION_WITHOUT_TIMESTAMP_APRS: "=",
+    PacketType.STATUS: ">",
+    PacketType.QUERY: "?",
+    PacketType.POSITION_WITH_TIMESTAMP_APRS: "@",
+    PacketType.TELEMETRY_DATA: "T",
+    PacketType.MAIDENHEAD_BEACON: "[",
+    PacketType.WEATHER_REPORT: "_",
+    PacketType.MIC_E_DATA: "`",
+    PacketType.USER_DEFINED: "{",
+    PacketType.DO_NOT_USE_TNC: "|",
+    PacketType.THIRD_PARTY: "}",
+    "~": PacketType.DO_NOT_USE_TNC
+}

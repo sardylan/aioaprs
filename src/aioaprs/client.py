@@ -5,7 +5,7 @@ from typing import Optional, Coroutine, Callable
 
 from aioaprs.config import AioAPRSClientConfig
 
-__VERSION__: str = "0.2.1"
+__VERSION__: str = "0.3.1"
 
 _logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ class AioAPRSClient(object):
             self._task_rx = asyncio.create_task(self._loop())
 
             password: str = self.passcode(self._config.callsign)
-            version: str = "aioaprs 0.0.0"
+            version: str = f"aioaprs {__VERSION__}"
 
             filter_string: str = ""
             if self._config.server_filter:
@@ -102,7 +102,7 @@ class AioAPRSClient(object):
 
             _logger.debug(f"[ <<< RX     ] {line}")
 
-            if self._callback is not None:
+            if not line.startswith("#") and self._callback is not None:
                 asyncio.create_task(self._callback(line))
 
     @staticmethod

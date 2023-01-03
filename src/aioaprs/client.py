@@ -4,8 +4,7 @@ from asyncio import StreamReader, StreamWriter, IncompleteReadError, Task, Cance
 from typing import Optional, Coroutine, Callable
 
 from aioaprs.config import AioAPRSClientConfig
-
-__VERSION__: str = "0.3.1"
+from aioaprs.version import __VERSION__
 
 _logger = logging.getLogger(__name__)
 

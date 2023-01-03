@@ -14,7 +14,8 @@ def parse_body_telemetry(raw_body: str) -> dict:
     items: List[str] = body_data.split(",")
 
     if len(items[0]) != 3:
-        raise ValueError(f"Invalid seq number: {items[0]}")
+        _logger.warning(f"Wrong value for seq number: {items[0]}")
+        # raise ValueError(f"Invalid seq number: {items[0]}")
 
     packet["seq"] = int(items[0])
     packet["values"] = []

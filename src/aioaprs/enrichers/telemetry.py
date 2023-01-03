@@ -44,13 +44,13 @@ class TelemetryEnricher:
         if packet["type"] != PacketType.TELEMETRY_DATA:
             raise ValueError("Packet type not supported for enriching")
 
-        if packet["addressee"] in self._parameter_names:
+        if packet["source"] in self._parameter_names:
             packet["parameter_names"] = self._parameter_names[packet["addressee"]]
 
-        if packet["addressee"] in self._unit_labels:
+        if packet["source"] in self._unit_labels:
             packet["unit_labels"] = self._unit_labels[packet["addressee"]]
 
-        if packet["addressee"] in self._equation_coefficients:
+        if packet["source"] in self._equation_coefficients:
             packet["equation_coefficients"] = self._equation_coefficients[packet["addressee"]]
 
             packet["values_real"] = []
@@ -62,7 +62,7 @@ class TelemetryEnricher:
                 real_value: float = (a * value_raw * value_raw) + (b * value_raw) + c
                 packet["values_real"].append(real_value)
 
-        if packet["addressee"] in self._project_names:
+        if packet["source"] in self._project_names:
             packet["project_name"] = self._project_names[packet["addressee"]]
 
     @staticmethod

@@ -4,7 +4,7 @@ from typing import List
 _logger = logging.getLogger(__name__)
 
 
-def parse_body_message(raw_body: str) -> dict:
+def parse_body_message(raw_body: str, strict_mode: bool = False) -> dict:
     if not raw_body:
         raise ValueError("Invalid raw body")
 

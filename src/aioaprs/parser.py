@@ -18,7 +18,7 @@ class PacketParser:
         self._raw_packet = raw_packet
         self._packet = {}
 
-    def parse(self) -> dict:
+    def parse(self, strict_mode: bool = False) -> dict:
         if self._raw_packet is None:
             raise ValueError("Raw packet is None")
 
@@ -36,12 +36,12 @@ class PacketParser:
         if not raw_body:
             raise ValueError("Empty body")
 
-        self._parse_header(raw_header)
-        self._parse_body(raw_body)
+        self._parse_header(raw_header, strict_mode=strict_mode)
+        self._parse_body(raw_body, strict_mode=strict_mode)
 
         return self._packet
 
-    def _parse_header(self, raw_header: str) -> None:
+    def _parse_header(self, raw_header: str, strict_mode: bool = False) -> None:
         self._packet["header"] = raw_header
 
         items: List[str] = raw_header.split(",")
@@ -59,7 +59,7 @@ class PacketParser:
         self._packet["path"] = items[1:]
         self._packet["via"] = items[-1]
 
-    def _parse_body(self, raw_body: str) -> None:
+    def _parse_body(self, raw_body: str, strict_mode: bool = False) -> None:
         self._packet["body"] = raw_body
 
         packet_type_char: str = raw_body[0]
@@ -74,8 +74,8 @@ class PacketParser:
         updated_body: dict = dict()
 
         if self._packet["type"] == PacketType.TELEMETRY_DATA:
-            updated_body = parse_body_telemetry(raw_body)
+            updated_body = parse_body_telemetry(raw_body, strict_mode=strict_mode)
         elif self._packet["type"] == PacketType.MESSAGE:
-            updated_body = parse_body_message(raw_body)
+            updated_body = parse_body_message(raw_body, strict_mode=strict_mode)
 
         self._packet.update(updated_body)

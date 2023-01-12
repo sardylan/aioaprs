@@ -4,7 +4,7 @@ from typing import List
 _logger = logging.getLogger(__name__)
 
 
-def parse_body_telemetry(raw_body: str) -> dict:
+def parse_body_telemetry(raw_body: str, strict_mode: bool = False) -> dict:
     packet: dict = dict()
 
     body_data = raw_body[1:]
@@ -15,7 +15,8 @@ def parse_body_telemetry(raw_body: str) -> dict:
 
     if len(items[0]) != 3:
         _logger.warning(f"Wrong value for seq number: {items[0]}")
-        # raise ValueError(f"Invalid seq number: {items[0]}")
+        if strict_mode:
+            raise ValueError(f"Invalid seq number: {items[0]}")
 
     packet["seq"] = int(items[0])
     packet["values"] = []
@@ -23,7 +24,7 @@ def parse_body_telemetry(raw_body: str) -> dict:
     raw_values_analog: List[str] = items[1:6]
 
     for value in raw_values_analog:
-        float_value: float = 0
+        float_value: float = 0.0
 
         try:
             float_value = float(value)
